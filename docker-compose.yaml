@@ -1,0 +1,22 @@
+services:
+  dragonfly:
+    image: 'docker.dragonflydb.io/dragonflydb/dragonfly'
+    container_name: dragonfly
+    ulimits:
+      memlock: -1
+    ports:
+      - "6379:6379"
+    networks:
+      - ai
+  nats:
+    image: 'nats:latest'
+    container_name: nats
+    ports:
+      - "4222:4222"
+    networks:
+      - ai
+
+networks:
+  ai:
+    driver: bridge
+    name: ai
